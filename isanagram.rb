@@ -17,19 +17,41 @@ line2sig = line2.upcase.gsub(/\W+/,'').split(//).sort.join()
 #puts line1sig == line2sig
 end
 
-a = File.open("spsidebyside2.txt")
 
-line_array_odd = []
-line_array_even = []
-line_no = 0
-a.each do |thisline|
-  if line_no % 2 == 0
-    line_array_even.push(thisline)
-  else
-    line_array_odd.push(thisline)
+input_array = ARGV
+
+if ARGV.length == 1
+  a = File.open(ARGV[0])
+  line_array_odd = []
+  line_array_even = []
+  line_no = 0
+  a.each do |thisline|
+    if line_no % 2 == 0
+      line_array_even.push(thisline)
+    else
+      line_array_odd.push(thisline)
+    end
+    line_no += 1
+    #puts line_no
   end
-  line_no += 1
-  #puts line_no
+elsif ARGV.length == 2
+  a = File.open(ARGV[0])
+  b = File.open(ARGV[1])
+  line_array_odd = []
+  line_array_even = []
+  line_no = 0
+  a.each do |thisline|
+    line_array_odd.push(thisline)
+    line_no += 1
+    #puts line_no
+  end
+  b.each do |thisline|
+    line_array_even.push(thisline)
+    line_no += 1
+    #puts line_no
+  end
+else
+  raise 'Error'
 end
 puts "*********************************************"
 line_no = 0
