@@ -17,7 +17,7 @@ line2sig = line2.upcase.gsub(/\W+/,'').split(//).sort.join()
 #puts line1sig == line2sig
 end
 
-a = File.open("spsidebyside1.txt")
+a = File.open("spsidebyside2.txt")
 
 line_array_odd = []
 line_array_even = []
