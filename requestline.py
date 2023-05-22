@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '4'
+poem_number = '5'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -46,8 +46,23 @@ for thisline in bigarray:
         print(thissection)
         print(this_request_url)
         result = requests.get(this_request_url)
+        myresult = result.text
         f  = open(outfilename,'w')
-        f.write(result.text)
+        #anagram_blob = re.search("(?m)</script>\s*<b>[^<]*\sfound\.\s+Displaying[^<]*</b>\s*<br>\s*(.*?)\s*<br>\s*<script>", myresult)
+        anagram_blob = re.search("(?sm)</script>\s*<b>[^<]*\sfound\.\s+Displaying[^<]*?</b>\s*<br>\s*(.*?)\s*<script>", myresult).group(1)
+        #anagram_blob = re.search("(?sm)</script>\s*<b>[^<]*\sfound\.\s+Displaying[^<]*?</b>\s*<br>\s*(.*)", myresult)
+        #anagram_blob = re.search("<br>\s*(.*?)\s*<br>", myresult)
+        #anagram_blob = re.search("(?m)(.*?)", myresult)
+        print("THEBLOB1")
+        print(anagram_blob)
+        print('************')
+        anagram_list = anagram_blob.split('<br>\n')
+        for thisanagram in anagram_list:
+          print('----------------')
+          print(thisanagram)
+          print('----------------')
+        print("THEBLOB2")
+        f.write(anagram_blob[0])
         f.close()
 
 
