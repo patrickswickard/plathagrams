@@ -1,6 +1,7 @@
 import requests
+import re
 
-poem_number = '2'
+poem_number = '4'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -12,6 +13,7 @@ for thisline in thisfile:
   print(lineno)
   thisarray = []
   if thisline:
+    thisline = re.sub("\W","",thisline)
     thislength = len(thisline)
     if thislength < 50:
       print(thislength)

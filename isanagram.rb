@@ -59,8 +59,8 @@ line_array_even.each do |thisline|
   #puts line_no
   line1 = line_array_even[line_no]
   line2 =  line_array_odd[line_no]
-line1sig = line1.upcase.gsub(/\W+/,'').split(//).sort.join()
-line2sig = line2.upcase.gsub(/\W+/,'').split(//).sort.join()
+  line1sig = line1.to_s.upcase.gsub(/\W+/,'').split(//).sort.join()
+  line2sig = line2.to_s.upcase.gsub(/\W+/,'').split(//).sort.join()
   if line1sig != line2sig
     puts "OOPS"
     puts line1
