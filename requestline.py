@@ -60,9 +60,9 @@ for thisline in bigarray:
         for thisanagram in anagram_list:
           print('----------------')
           print(thisanagram)
+          f.write(thisanagram + '\n')
           print('----------------')
         print("THEBLOB2")
-        f.write(anagram_blob[0])
         f.close()
 
 
