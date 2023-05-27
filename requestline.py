@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '8'
+poem_number = '14'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -17,13 +17,13 @@ for thisline in thisfile:
     thislength = len(thisline)
     if thislength < 50:
       print(thislength)
-      if thislength <= 25:
+      if thislength < 25:
         thisarray.append(thisline)
         print(thisline)
       else:
         half = int(thislength/2)
-        firsthalf = thisline[0:half]
-        lasthalf = thisline[half:]
+        firsthalf = thisline[0:half-1]
+        lasthalf = thisline[half-1:]
         thisarray.append(firsthalf)
         thisarray.append(lasthalf)
         print(firsthalf)
@@ -34,8 +34,8 @@ for thisline in thisfile:
 
 print(bigarray)     
 
-linecount = 19
-for thisline in bigarray[19:]:
+linecount = 17
+for thisline in bigarray[linecount:]:
     linecount += 1
     sectioncount = 0
     for thissection in thisline:
