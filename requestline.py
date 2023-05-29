@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '14'
+poem_number = '16'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -34,7 +34,7 @@ for thisline in thisfile:
 
 print(bigarray)     
 
-linecount = 17
+linecount = 0
 for thisline in bigarray[linecount:]:
     linecount += 1
     sectioncount = 0
