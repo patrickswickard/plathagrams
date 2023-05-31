@@ -45,7 +45,7 @@ def request_anagram_from_site(section):
   else:
     return []
 
-linecount = 23
+linecount = 0
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
