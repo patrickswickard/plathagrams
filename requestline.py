@@ -1,16 +1,12 @@
 import requests
 import re
 
-poem_number = '19'
+poem_number = '20'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
 
-lineno = 0
-bigarray = []
-for thisline in thisfile:
-  lineno += 1
-  print(lineno)
+def standard_split(thisline):
   thisarray = []
   if thisline:
     thisline = re.sub("\W","",thisline)
@@ -25,10 +21,37 @@ for thisline in thisfile:
     else:
       firsthalf = thisline[0:half-1]
       lasthalf = thisline[half-1:]
-    thisarray.append(firsthalf)
-    thisarray.append(lasthalf)
-    #print(firsthalf)
-    #print(lasthalf)
+  else:
+    firsthalf = ''
+    lasthalf = ''
+  thisarray.append(firsthalf)
+  thisarray.append(lasthalf)
+  return thisarray
+
+lineno = 0
+bigarray = []
+for thisline in thisfile:
+  lineno += 1
+  print(lineno)
+  #thisarray = []
+  #if thisline:
+  #  thisline = re.sub("\W","",thisline)
+  #  thislength = len(thisline)
+  #  half = int(thislength/2)
+  #  if thislength >= 50:
+  #    print('too long!')
+  #  print(thislength)
+  #  if thislength < 25:
+  #    firsthalf = thisline
+  #    lasthalf = ''
+  #  else:
+  #    firsthalf = thisline[0:half-1]
+  #    lasthalf = thisline[half-1:]
+  #  thisarray.append(firsthalf)
+  #  thisarray.append(lasthalf)
+  #  #print(firsthalf)
+  #  #print(lasthalf)
+  thisarray = standard_split(thisline)
   bigarray.append(thisarray)
 
 print(bigarray)     
@@ -45,7 +68,7 @@ def request_anagram_from_site(section):
   else:
     return []
 
-linecount = 0
+linecount = 66
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
