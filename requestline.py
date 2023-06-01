@@ -28,30 +28,39 @@ def standard_split(thisline):
   thisarray.append(lasthalf)
   return thisarray
 
+def common_split(thisline):
+  thisarray = []
+  common_list = []
+  uncommon_list = []
+  uncommon_string = ''
+  common_split = standard_split(uncommon_string)
+  common_final = ''
+  uncommon_list_final = ''
+  common_firsthalf_final = common_split[0]
+  common_lasthalf_final = common_split[1]
+  thisarray.append(uncommon_list_final)
+  thisarray.append(common_firsthalf_final)
+  thisarray.append(common_lasthalf_final)
+  return thisarray
+
+def get_all_anagrams(thisline):
+  thisarray = []
+  standard_array = standard_split(thisline)
+  common_array = common_split(thisline)
+  for this_standard_array in standard_array:
+    thisarray.append(this_standard_array)
+  for this_common_array in common_array:
+    thisarray.append(this_common_array)
+  return thisarray
+
+
 lineno = 0
 bigarray = []
 for thisline in thisfile:
   lineno += 1
   print(lineno)
-  #thisarray = []
-  #if thisline:
-  #  thisline = re.sub("\W","",thisline)
-  #  thislength = len(thisline)
-  #  half = int(thislength/2)
-  #  if thislength >= 50:
-  #    print('too long!')
-  #  print(thislength)
-  #  if thislength < 25:
-  #    firsthalf = thisline
-  #    lasthalf = ''
-  #  else:
-  #    firsthalf = thisline[0:half-1]
-  #    lasthalf = thisline[half-1:]
-  #  thisarray.append(firsthalf)
-  #  thisarray.append(lasthalf)
-  #  #print(firsthalf)
-  #  #print(lasthalf)
-  thisarray = standard_split(thisline)
+  #thisarray = standard_split(thisline)
+  thisarray = get_all_anagrams(thisline)
   bigarray.append(thisarray)
 
 print(bigarray)     
@@ -68,7 +77,7 @@ def request_anagram_from_site(section):
   else:
     return []
 
-linecount = 66
+linecount = 67
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
