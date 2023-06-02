@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '20'
+poem_number = '21'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -33,6 +33,10 @@ def common_split(thisline):
   common_list = []
   uncommon_list = []
   uncommon_string = ''
+  thisline_stripped = re.sub(r'[^\w\s]','',thisline)
+  thisline_words = thisline_stripped.split(' ')
+  thisline_rejoined = ' '.join(thisline_words).lower()
+  #print(thisline_rejoined)
   common_split = standard_split(uncommon_string)
   common_final = ''
   uncommon_list_final = ''
@@ -77,7 +81,7 @@ def request_anagram_from_site(section):
   else:
     return []
 
-linecount = 67
+linecount = 0
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
