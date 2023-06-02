@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '21'
+poem_number = '23'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
