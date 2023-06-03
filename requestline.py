@@ -14,7 +14,7 @@ def standard_split(thisline):
     half = int(thislength/2)
     if thislength >= 50:
       print('too long!')
-    print(thislength)
+    #print(thislength)
     if thislength < 25:
       firsthalf = thisline
       lasthalf = ''
@@ -29,20 +29,44 @@ def standard_split(thisline):
   return thisarray
 
 def common_split(thisline):
+  common_word_set = {'a','an','and','the','are','is','there','as','because','of','like','where'}
   thisarray = []
   common_list = []
   uncommon_list = []
   uncommon_string = ''
-  thisline_stripped = re.sub(r'[^\w\s]','',thisline)
+  thisline_stripped = re.sub(r'[^\w\s]','',thisline.lower())
   thisline_words = thisline_stripped.split(' ')
+  common_word_list = []
+  uncommon_word_list = []
+  for thisword in thisline_words:
+    if thisword in common_word_set:
+      #print('************************')
+      #print(thisword + ' is a common word!')
+      #print('************************')
+      common_word_list.append(thisword)
+    else:
+      #print('************************')
+      #print(thisword + ' is an uncommon word!')
+      #print('************************')
+      uncommon_word_list.append(thisword)
+  print('LISTON****************')
+  print(common_word_list)
+  common_word_string = ' '.join(common_word_list).lower()
+  print(common_word_string)
+  uncommon_word_string = ''.join(uncommon_word_list).lower()
+  print(uncommon_word_list)
+  print(uncommon_word_string)
+  print('LISTOFF****************')
   thisline_rejoined = ' '.join(thisline_words).lower()
   #print(thisline_rejoined)
-  common_split = standard_split(uncommon_string)
+  #common_split = standard_split(uncommon_string)
+  common_split = standard_split(uncommon_word_string)
   common_final = ''
-  uncommon_list_final = ''
+  #uncommon_list_final = ''
   common_firsthalf_final = common_split[0]
   common_lasthalf_final = common_split[1]
-  thisarray.append(uncommon_list_final)
+  #thisarray.append(uncommon_list_final)
+  thisarray.append(common_word_string)
   thisarray.append(common_firsthalf_final)
   thisarray.append(common_lasthalf_final)
   return thisarray
@@ -58,7 +82,7 @@ def get_all_anagrams(thisline):
   return thisarray
 
 
-lineno = 0
+lineno = 10
 bigarray = []
 for thisline in thisfile:
   lineno += 1
@@ -74,14 +98,17 @@ def request_anagram_from_site(section):
     request_url = 'https://new.wordsmith.org/anagram/anagram.cgi?anagram=' + section + '&language=english&t=500&d=&include=&exclude=&n=&m=&a=n&l=n&q=n&k=1&source=adv'
     print(section)
     print(request_url)
-    result = requests.get(request_url).text
-    anagram_blob = re.search("(?sm)</script>\s*<b>[^<]*\sfound\.\s+Displaying[^<]*?</b>\s*<br>\s*(.*?)\s*<br>\s*<script>", result).group(1)
-    anagram_list = anagram_blob.split('<br>\n')
-    return anagram_list
+    try:
+      result = requests.get(request_url).text
+      anagram_blob = re.search("(?sm)</script>\s*<b>[^<]*\sfound\.\s+Displaying[^<]*?</b>\s*<br>\s*(.*?)\s*<br>\s*<script>", result).group(1)
+      anagram_list = anagram_blob.split('<br>\n')
+      return anagram_list
+    except:
+      return []
   else:
     return []
 
-linecount = 0
+linecount = 10
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
