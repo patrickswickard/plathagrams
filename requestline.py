@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '23'
+poem_number = '24'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -82,7 +82,7 @@ def get_all_anagrams(thisline):
   return thisarray
 
 
-lineno = 10
+lineno = 0
 bigarray = []
 for thisline in thisfile:
   lineno += 1
@@ -108,7 +108,7 @@ def request_anagram_from_site(section):
   else:
     return []
 
-linecount = 9
+linecount = 0
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
