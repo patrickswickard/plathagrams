@@ -104,11 +104,11 @@ def request_anagram_from_site(section):
       anagram_list = anagram_blob.split('<br>\n')
       return anagram_list
     except:
-      return []
+      return [section]
   else:
     return []
 
-linecount = 10
+linecount = 9
 for thisline in bigarray[linecount:]:
   linecount += 1
   sectioncount = 0
