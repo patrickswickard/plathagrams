@@ -1,7 +1,7 @@
 import requests
 import re
 
-poem_number = '24'
+poem_number = '25'
 poemfilename = 'spsidebyside' + str(poem_number) + '.txt'
 with open(poemfilename, 'r') as file:
     thisfile = file.read().split('\n')
@@ -29,7 +29,7 @@ def standard_split(thisline):
   return thisarray
 
 def common_split(thisline):
-  common_word_set = {'a','an','and','the','are','is','there','as','because','of','like','where'}
+  common_word_set = {'a','an','and','the','are','is','there','as','because','of','like','where','who','what','when','why','that','this','was','were'}
   thisarray = []
   common_list = []
   uncommon_list = []
