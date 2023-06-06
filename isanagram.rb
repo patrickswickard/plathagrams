@@ -85,6 +85,26 @@ line_array_even.each do |thisline|
     end
     puts(hash1)
     puts(hash2)
+    hash1.keys.each do |thisletter|
+      if hash2[thisletter]
+        undercount = hash2[thisletter] - hash1[thisletter]
+        if undercount > 0
+          puts "Undercount #{thisletter} #{undercount}"
+        end
+      else
+        puts "#{thisletter} is in hash1 but not in hash2"
+      end
+    end
+    hash2.keys.each do |thisletter|
+      if hash1[thisletter]
+        overcount = hash1[thisletter] - hash2[thisletter]
+        if overcount > 0
+          puts "Overcount #{thisletter} #{overcount}"
+        end
+      else
+        puts "#{thisletter} is in hash2 but not in hash1"
+      end
+    end
   end
   line_no += 1
 end
