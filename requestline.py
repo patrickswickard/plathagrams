@@ -114,7 +114,7 @@ for thisline in bigarray[linecount:]:
   sectioncount = 0
   for thissection in thisline:
     sectioncount += 1
-    outfilename = 'poem_' + poem_number + '_' + str(linecount) + '_' + str(sectioncount)
+    outfilename = 'cache/poem_' + poem_number + '_' + str(linecount) + '_' + str(sectioncount)
     print(outfilename)
     f  = open(outfilename,'w')
     f.write('Original section: ' + thissection + '\n')
