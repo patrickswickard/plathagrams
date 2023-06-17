@@ -61,15 +61,21 @@ line_array_even.each do |thisline|
   line2 =  line_array_odd[line_no]
   line1sig = line1.to_s.upcase.gsub(/\W+/,'').split(//).sort.join()
   line2sig = line2.to_s.upcase.gsub(/\W+/,'').split(//).sort.join()
+  line1siglength = line1sig.length
+  line2siglength = line2sig.length
+  #print "line1siglength #{line1siglength}\n"
+  #print "line2siglength #{line2siglength}\n"
   if line1sig != line2sig
-    puts "OOPS"
     puts line1
     puts line1sig
     puts line2
     puts line2sig
     hash1 = {}
     hash2 = {}
+    lettercount1 = 0
+    lettercount2 = 0
     line1sig.split(//).each do |thisletter|
+      lettercount1 += 1
       if hash1[thisletter]
         hash1[thisletter] += 1
       else
@@ -77,12 +83,15 @@ line_array_even.each do |thisline|
       end
     end
     line2sig.split(//).each do |thisletter|
+      lettercount2 += 1
       if hash2[thisletter]
         hash2[thisletter] += 1
       else
         hash2[thisletter] = 1
       end
     end
+    print "letter count 1 #{lettercount1}\n"
+    print "letter count 2 #{lettercount2}\n"
     puts(hash1)
     puts(hash2)
     hash1.keys.each do |thisletter|
