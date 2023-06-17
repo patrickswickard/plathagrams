@@ -20,3 +20,12 @@ isanagram.rb  was previously written to take a file as input.  Each pair of line
 requestline.py takes a file line-by-line, expecting each line to be <= 50 characters.  The Internet Anagram Server as stated above has a limit of 25 characters.  This program submits lines that are <= 25 characters directly to the anagram server and splits roughly in half lines of 26-50 characters.  The anagrams are gathered and spit out to files so that anagrams of the first and last halves can be combined into an anagram for the entire line.  This quickly overcomes the limitation above and makes the work of anagrammizing poems more efficient.
 
 As a further improvement on this, we make two runs of anagrams.  The first run naively splits the line roughly in the middle as described.  Unfortunately the frequent use of common words has a tendency to "clutter up" the anagrams, often with the same repetitive words.  As an attempt to avoid this, the second strips common words ("a", "and", "the", etc) and submits only uncommon words to the anagram server for rearrangement.  The common words are preserved in a separate list (with any anagrams of their own) and presented alongside the anagrams of common words.  This allows for imposing roughly the "same structure" on the line if desired, which can lead to a Mad-Lib type effect.  The code for this is a work in progress, but early use indicates that this is greatly speeding up the process of choosing appropriate anagrams.
+
+UPDATE 2
+
+Plathagram initial project complete.  All poems have been successfully anagrammed.
+
+One limitation is with special characters, e.g letters with accents get discarded as non-word characters with \W .  This leads to a word like décor being replaced with dcor instead of, say, decor.  This is a general anagram problem even without software solutions.  May be good to raise an alarm when such a word occurs, make a list of non-word characters that are discarded, etc.
+
+Next steps: better checking, code cleanup, perhaps tools to analyze poems and better data structures to hold them.
+
